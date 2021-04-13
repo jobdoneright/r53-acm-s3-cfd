@@ -1,0 +1,5 @@
+test/fixtures/simple/.gha-r53-acm-s3-cfd
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+.terraform.lock.hcl
