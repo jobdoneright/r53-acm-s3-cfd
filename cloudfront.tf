@@ -7,7 +7,7 @@ resource "aws_cloudfront_distribution" "apex" {
   price_class         = "PriceClass_100"
 
   origin {
-    domain_name = "${aws_s3_bucket.apex.website_endpoint}"
+    domain_name = aws_s3_bucket.apex.website_endpoint
     origin_id   = "S3-${var.dns_zone}"
 
     custom_origin_config {
@@ -25,7 +25,7 @@ resource "aws_cloudfront_distribution" "apex" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = "${aws_acm_certificate.cert.arn}"
+    acm_certificate_arn      = aws_acm_certificate.cert.arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2018"
   }
@@ -60,7 +60,7 @@ resource "aws_cloudfront_distribution" "site_fqdn" {
   price_class         = "PriceClass_100"
 
   origin {
-    domain_name = "${aws_s3_bucket.www_redirect_to_apex.website_endpoint}"
+    domain_name = aws_s3_bucket.www_redirect_to_apex.website_endpoint
     origin_id   = "S3-${var.site_fqdn}"
 
     custom_origin_config {
@@ -78,7 +78,7 @@ resource "aws_cloudfront_distribution" "site_fqdn" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = "${aws_acm_certificate.cert.arn}"
+    acm_certificate_arn      = aws_acm_certificate.cert.arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2018"
   }
